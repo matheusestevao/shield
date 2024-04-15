@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-class CompanyAddress extends Model
+class CompanyTypeAddress extends Model
 {
     use HasFactory;
 
@@ -16,14 +15,8 @@ class CompanyAddress extends Model
     public $timestamps = false;
 
 	protected $fillable = [
-		'company_id',
-		'zip_code',
-        'address',
-        'number_address',
-        'complement_address',
-        'neighborhood',
-		'state',
-		'city'
+		'type_addresses',
+		'company_addresses'
 	];
 
     /**
@@ -38,13 +31,13 @@ class CompanyAddress extends Model
 	    });
 	}
 
-	public function company(): BelongsTo
+	public function companyAddress(): BelongsTo
 	{
-		return $this->belongsTo(Company::class, 'company_id', 'id');
+		return $this->belongsTo(CompanyAddress::class, 'company_address_id', 'id');
 	}
 
-	public function type(): HasMany
+	public function type(): BelongsTo
 	{
-		return $this->hasMany(CompanyTypeAddress::class, 'company_address_id', 'id');
+		return $this->belongsTo(TypeAddress::class, 'type_address_id', 'id');
 	}
 }

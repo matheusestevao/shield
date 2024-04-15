@@ -16,7 +16,7 @@ class CreateCompanyAddressesTable extends Migration
         Schema::create('company_addresses', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('company_id');
-            $table->foreign('company_id')->references('id')->on('companys')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->string('zip_code')->nullable();
             $table->string('address')->nullable();
             $table->string('number_address')->nullable();

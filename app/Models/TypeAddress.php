@@ -4,26 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-class CompanyAddress extends Model
+class TypeAddress extends Model
 {
     use HasFactory;
 
 	public $incrementing = false;
-    public $timestamps = false;
 
 	protected $fillable = [
-		'company_id',
-		'zip_code',
-        'address',
-        'number_address',
-        'complement_address',
-        'neighborhood',
-		'state',
-		'city'
+		'name'
 	];
 
     /**
@@ -38,13 +29,8 @@ class CompanyAddress extends Model
 	    });
 	}
 
-	public function company(): BelongsTo
+	public function companyTypeAddress(): HasMany
 	{
-		return $this->belongsTo(Company::class, 'company_id', 'id');
-	}
-
-	public function type(): HasMany
-	{
-		return $this->hasMany(CompanyTypeAddress::class, 'company_address_id', 'id');
+		return $this->hasMany(CompanyTypeAddress::class, 'type_address_id', 'id');
 	}
 }
