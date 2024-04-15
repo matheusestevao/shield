@@ -15,8 +15,8 @@ class CompanyTypeAddress extends Model
     public $timestamps = false;
 
 	protected $fillable = [
-		'type_addresses',
-		'company_addresses'
+		'type_address_id',
+		'company_address_id'
 	];
 
     /**
